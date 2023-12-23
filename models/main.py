@@ -8,6 +8,8 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
+print("Predication Started")
+
 
 def predict_color(image, no_of_clusters=5):
     scaler = StandardScaler(with_mean=0, with_std=1)
@@ -15,6 +17,8 @@ def predict_color(image, no_of_clusters=5):
     r = []
     g = []
     b = []
+
+    print("Generating RGB matrix from Image")
 
     for line in image:
         for pixel in line:
@@ -24,6 +28,7 @@ def predict_color(image, no_of_clusters=5):
             g.append(temp_g)
             b.append(temp_b)
 
+    print("Feature Scaling")
     df = pd.DataFrame({'red': r, 'green': g, 'blue': b})
 
     df['scaled_red'] = scaler.fit_transform(df[['red']])
@@ -37,7 +42,7 @@ def predict_color(image, no_of_clusters=5):
         kmeans.fit(X)
 
         kmeans.predict(X)
-
+    print("Applying K-means")
     kmeans = KMeans(n_clusters=no_of_clusters)
     kmeans.fit(X)
     kmeans.predict(X)
@@ -48,7 +53,7 @@ def predict_color(image, no_of_clusters=5):
     colors = []
 
     r_std, g_std, b_std = df[['red', 'green', 'blue']].std()
-
+    print('Getting Results Ready...')
     for cluster_center in cluster_centers:
         scaled_r, scaled_g, scaled_b = cluster_center
 
@@ -59,7 +64,5 @@ def predict_color(image, no_of_clusters=5):
         ))
 
     plt.imshow([colors])
-    plt.savefig('output.jpg')
-
-
-
+    plt.savefig('data/processed/output.jpg')
+    print("----------------------------------------------")
