@@ -22,7 +22,7 @@ if image_file is not None:
     st.image(img, width=300)
 
     # saving uploaded file with name -> colors.jpg in data/raw directory
-    with open(os.path.join("data/raw/colors.jpg"), "wb") as f:
+    with open(os.path.join("data/raw/input.jpg"), "wb") as f:
         f.write(image_file.getbuffer())
     st.success('Successfully Uploaded !')
 
@@ -34,6 +34,6 @@ for i in range(1, 101):
     bar.progress(value=i)
 
 st.subheader("Top 5 most dominant colors are: ")
-pic = cv2.imread("data/raw/colors.jpg")
+pic = cv2.imread("data/raw/input.jpg")
 predict_color(pic)
-st.image('data/processed/output.jpg', width=350)
+st.image('data/processed/output.jpg', width=500)
