@@ -3,7 +3,10 @@ image-color-segmentation
 
 A simple project to segment most recurring colors in image using K-means clustering.
 
-to run: streamlit run app.py
+to run: 
+--------
+streamlit run app.py
+--------
 
 Project Organization
 ------------
