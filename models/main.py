@@ -33,17 +33,17 @@ def predict_color(image, no_of_clusters=5):
     df['scaled_green'] = scaler.fit_transform(df[['green']])
     df['scaled_blue'] = scaler.fit_transform(df[['blue']])
 
-    X = df[['scaled_red', 'scaled_green', 'scaled_blue']].values
+    x = df[['scaled_red', 'scaled_green', 'scaled_blue']].values
 
     for cluster in range(2, 8):
         kmeans = KMeans(n_clusters=cluster, random_state=42)
-        kmeans.fit(X)
+        kmeans.fit(x)
 
-        kmeans.predict(X)
+        kmeans.predict(x)
     print("Applying K-means")
     kmeans = KMeans(n_clusters=no_of_clusters)
-    kmeans.fit(X)
-    kmeans.predict(X)
+    kmeans.fit(x)
+    kmeans.predict(x)
 
     # These are the centroids of the clusters
     cluster_centers = kmeans.cluster_centers_
